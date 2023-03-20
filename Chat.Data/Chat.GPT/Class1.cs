@@ -1,4 +1,4 @@
-﻿namespace Chat.Exceptions
+﻿namespace Chat.GPT
 {
     public class Class1
     {
