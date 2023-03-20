@@ -16,6 +16,9 @@ namespace Chat.Entities.DatabaseEntities.GPTUser
                 .WithOne(q => q.GPTUser)
                 .HasForeignKey(q => q.GPTUserId);
 
+            builder.HasMany(q => q.ChatHistories)
+                .WithOne(q => q.GPTUser)
+                .HasForeignKey(q => q.GPTUserId);
         }
     }
 }
