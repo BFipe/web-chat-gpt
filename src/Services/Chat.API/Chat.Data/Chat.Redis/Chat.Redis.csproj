@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Chat.Entities\Chat.Entities.csproj" />
+    <ProjectReference Include="..\..\Chat.Exceptions\Chat.Exceptions.csproj" />
+  </ItemGroup>
+
 </Project>

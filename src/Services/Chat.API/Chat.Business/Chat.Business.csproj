@@ -13,8 +13,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chat.Data\Chat.Database\Chat.Database.csproj" />
+    <ProjectReference Include="..\Chat.Data\Chat.GPT\Chat.GPT.csproj" />
+    <ProjectReference Include="..\Chat.Data\Chat.Redis\Chat.Redis.csproj" />
     <ProjectReference Include="..\Chat.Entities\Chat.Entities.csproj" />
-    <ProjectReference Include="..\Chat.Redis\Chat.Redis.csproj" />
+    <ProjectReference Include="..\Chat.Exceptions\Chat.Exceptions.csproj" />
   </ItemGroup>
 
 </Project>

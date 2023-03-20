@@ -14,11 +14,20 @@ namespace Chat.Database.Extentions
     {
         public static IServiceCollection AddDatabaseLayerExtentions(this IServiceCollection services)
         {
-            services.AddDbContext<ChatDbContext>(options =>
+            try
             {
-                options.UseSqlServer("Server=localhost,1433;Database=GPTChat;", q => q.MigrationsAssembly("Chat.Database"));
-                //options.UseSqlServer(Environment.GetEnvironmentVariable("DatabaseConnection") ?? "localhost:2222", q => q.MigrationsAssembly("Chat.Database"));
-            });
+                services.AddDbContext<ChatDbContext>(options =>
+                {
+                    options.UseSqlServer("Server=localhost;Database=GPT;Trusted_Connection=True;", q => q.MigrationsAssembly("Chat.Database"));
+                    //options.UseSqlServer(Environment.GetEnvironmentVariable("DatabaseConnection") ?? "localhost:2222", q => q.MigrationsAssembly("Chat.Database"));
+                });
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
 
             services
                 .AddIdentityCore<GPTUser>(options =>
@@ -30,7 +39,7 @@ namespace Chat.Database.Extentions
                 .AddRoles<IdentityRole>()
                 //.AddTokenProvider<DataProtectorTokenProvider<GPTUser>>("Chat.API")
                 .AddEntityFrameworkStores<ChatDbContext>();
-                //.AddDefaultTokenProviders();
+            //.AddDefaultTokenProviders();
 
             return services;
         }
