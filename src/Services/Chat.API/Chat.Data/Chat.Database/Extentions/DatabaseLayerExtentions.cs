@@ -37,9 +37,9 @@ namespace Chat.Database.Extentions
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             })
                 .AddRoles<IdentityRole>()
-                //.AddTokenProvider<DataProtectorTokenProvider<GPTUser>>("Chat.API")
-                .AddEntityFrameworkStores<ChatDbContext>();
-            //.AddDefaultTokenProviders();
+                .AddTokenProvider<DataProtectorTokenProvider<GPTUser>>("Chat.API")
+                .AddEntityFrameworkStores<ChatDbContext>()
+                .AddDefaultTokenProviders();
 
             return services;
         }
