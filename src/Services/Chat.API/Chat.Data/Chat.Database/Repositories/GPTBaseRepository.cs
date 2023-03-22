@@ -1,4 +1,5 @@
-﻿using Chat.Entities.EntityDepenceInterfaces;
+﻿using Chat.Database.Interfaces;
+using Chat.Entities.EntityDepenceInterfaces;
 using Chat.Exceptions.DatabaseExceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
