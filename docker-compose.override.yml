@@ -4,6 +4,7 @@ services:
   #chat.api:
   #  environment:
   #    ASPNETCORE_ENVIRONMENT : Development
+  #    PostgresDatabaseConnection : Server=postgreDb;Database=GPTChat;User Id=ilya.maximov11@gmail.com;Password=bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81;
   #  ports:
   #    5000:80
 
@@ -19,6 +20,7 @@ services:
   postgreDb:
     environment:
       POSTGRES_PASSWORD: bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81
+      POSTGRES_USER: ilya.maximov11@gmail.com
     ports:
       - 5432:5432
     volumes:
