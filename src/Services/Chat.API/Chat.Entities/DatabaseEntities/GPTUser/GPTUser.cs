@@ -1,4 +1,5 @@
-﻿using Chat.Entities.GPTEntities.APIKey;
+﻿using Chat.Entities.EntityDepenceInterfaces;
+using Chat.Entities.GPTEntities.APIKey;
 using Chat.Entities.GPTEntities.Chat;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chat.Entities.DatabaseEntities.GPTUser
 {
-    public class GPTUser : IdentityUser
+    public class GPTUser : IdentityUser, IDatabaseStorable
     {
         public List<APIKey> APIKeys { get; set; }
 

@@ -12,7 +12,7 @@ namespace Chat.Entities.GPTEntities.APIKey
     {
         public void Configure(EntityTypeBuilder<APIKey> builder)
         {
-            builder.HasKey(q => q.APIKeyId);
+            builder.HasKey(q => q.Id);
 
             builder.HasIndex(q => q.APIKeyValue).IsUnique(true);
         }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Chat.Redis.Interfaces;
+using Chat.Redis.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,8 @@ namespace Chat.Redis.Extentions
                 q.Configuration = "redis://:bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81@localhost:6379";
                 //q.Configuration = Environment.GetEnvironmentVariable("RedisDatabaseConnection");
             });
+
+            services.AddScoped<IRedisDatabaseRepository, RedisDatabaseRepository>();
 
             return services;
         }

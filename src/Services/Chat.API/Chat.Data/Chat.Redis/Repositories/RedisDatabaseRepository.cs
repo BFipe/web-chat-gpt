@@ -1,6 +1,6 @@
 ﻿using Chat.Entities.GPTEntities.Chat;
+using Chat.Redis.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;

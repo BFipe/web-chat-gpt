@@ -1,4 +1,5 @@
 ﻿using Chat.Entities.DatabaseEntities.GPTUser;
+using Chat.Entities.EntityDepenceInterfaces;
 using OpenAI.GPT3.ObjectModels.RequestModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Chat.Entities.GPTEntities.Chat
 {
-    public class ChatHistory
+    public class ChatHistory : IDatabaseStorable
     {
         public string Id { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using Chat.Entities.DatabaseEntities.GPTUser;
+using Chat.Entities.EntityDepenceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Chat.Entities.GPTEntities.APIKey
 {
-    public class APIKey
+    public class APIKey : IDatabaseStorable
     {
-        public string APIKeyId { get; set; }
+        public string Id { get; set; }
         public string APIKeyValue { get; set; }
         public DateTime LastUsed { get; set; }
         public string GPTUserId { get; set; }
