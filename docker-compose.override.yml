@@ -5,6 +5,7 @@ services:
   #  environment:
   #    ASPNETCORE_ENVIRONMENT : Development
   #    PostgresDatabaseConnection : Server=postgreDb;Database=GPTChat;User Id=ilya.maximov11@gmail.com;Password=bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81;
+  #    RedisDatabaseConnection : redis://:bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81@redisDb:6379
   #  ports:
   #    5000:80
 

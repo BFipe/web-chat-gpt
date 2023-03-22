@@ -1,4 +1,5 @@
 ﻿using Chat.Database.Extentions;
+using Chat.Redis.Extentions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace Chat.Business.Extentions
         public static IServiceCollection AddBusinessLayerServices(this IServiceCollection services) 
         {
             services.AddDatabaseLayerExtentions();
+
+            services.AddRedisLayerExtentions();
+
             return services;
         }
     }

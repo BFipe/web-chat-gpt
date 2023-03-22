@@ -28,4 +28,9 @@
     <ProjectReference Include="..\..\Chat.Exceptions\Chat.Exceptions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
