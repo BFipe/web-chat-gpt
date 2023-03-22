@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  #chat.api:
+  #  environment:
+  #    ASPNETCORE_ENVIRONMENT : Development
+  #  ports:
+  #    5000:80
+
+  redisDb:
+    image: redis
+    environment:
+      REDIS_PASSWORD : mysecretpassword
+
+  MSSQLDb:
+    environment:
+      ACCEPT_EULA : Y
+      MSSQL_SA_PASSWORD : 90963cc3-6b29-4c7b-86db-909e12fe5189

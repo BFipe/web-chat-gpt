@@ -14,20 +14,11 @@ namespace Chat.Database.Extentions
     {
         public static IServiceCollection AddDatabaseLayerExtentions(this IServiceCollection services)
         {
-            try
-            {
                 services.AddDbContext<ChatDbContext>(options =>
                 {
-                    options.UseSqlServer("Server=localhost;Database=GPT;Trusted_Connection=True;", q => q.MigrationsAssembly("Chat.Database"));
-                    //options.UseSqlServer(Environment.GetEnvironmentVariable("DatabaseConnection") ?? "localhost:2222", q => q.MigrationsAssembly("Chat.Database"));
+                    options.UseNpgsql("Host=localhost;Database=GPT;Trusted_Connection=True;", q => q.MigrationsAssembly("Chat.Database"));
+                    //options.UseSqlServer(Environment.GetEnvironmentVariable("MssqlDatabaseConnection"), q => q.MigrationsAssembly("Chat.Database"));
                 });
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
 
             services
                 .AddIdentityCore<GPTUser>(options =>
