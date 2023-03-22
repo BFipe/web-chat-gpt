@@ -8,11 +8,35 @@ services:
   #    5000:80
 
   redisDb:
-    image: redis
     environment:
-      REDIS_PASSWORD : mysecretpassword
+      REDIS_PASSWORD : bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81
+    volumes:
+      - redis_data:/data
+    ports:
+      - 6379:6379
+    restart: always
 
-  MSSQLDb:
+  postgreDb:
     environment:
-      ACCEPT_EULA : Y
-      MSSQL_SA_PASSWORD : 90963cc3-6b29-4c7b-86db-909e12fe5189
+      POSTGRES_PASSWORD: bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  pgadmin:
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ilya.maximov11@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin1234
+    ports:
+      - 5431:80
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+    restart: always
+
+
+volumes:
+  redis_data:
+  postgres_data:
+  pgadmin_data:

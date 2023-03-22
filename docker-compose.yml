@@ -10,7 +10,8 @@ services:
   redisDb:
     image: redis:alpine
     
-  MSSQLDb:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+  postgreDb:
+    image: postgres:alpine
 
-
+  pgadmin:
+    image: dpage/pgadmin4
