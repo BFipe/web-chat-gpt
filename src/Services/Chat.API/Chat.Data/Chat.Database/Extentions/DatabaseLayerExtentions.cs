@@ -1,4 +1,7 @@
-﻿using Chat.Entities.DatabaseEntities.GPTUser;
+﻿using Chat.Database.Interfaces;
+using Chat.Database.Repositories;
+using Chat.Entities.DatabaseEntities.GPTUser;
+using Chat.Entities.GPTEntities.APIKey;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +37,8 @@ namespace Chat.Database.Extentions
                 .AddTokenProvider<DataProtectorTokenProvider<GPTUser>>("Chat.API")
                 .AddEntityFrameworkStores<ChatDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IGPTBaseRepository<APIKey>, GPTBaseRepository<APIKey>>();
 
             return services;
         }

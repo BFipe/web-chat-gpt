@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Chat.Database.Repositories
 {
-    public class GPTBaseRepository<T> where T : class, IDatabaseStorable
+    public class GPTBaseRepository<T> : IGPTBaseRepository<T> where T : class, IDatabaseStorable
     {
         private readonly ChatDbContext _dbContext;
         private readonly ILogger<GPTBaseRepository<T>> _logger;
@@ -22,7 +22,7 @@ namespace Chat.Database.Repositories
             _logger = logger;
         }
 
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T> GetAsync(string id)
         {
             await ThrowIfNotFound(id);
 
@@ -31,8 +31,10 @@ namespace Chat.Database.Repositories
             return await _dbContext.Set<T>().FirstAsync(q => q.Id == id);
         }
 
-        public async Task<List<T>> GetByExpressionAsync(Expression<Func<T, bool>> predicate)
+        public async Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
+            await ThrowIfNotFound(predicate);
+
             _logger.LogInformation($"Returned entities {nameof(T)} using Expression {predicate.ToString()}");
 
             return await _dbContext.Set<T>().Where(predicate).ToListAsync();
@@ -66,15 +68,26 @@ namespace Chat.Database.Repositories
             return entity;
         }
 
-        public async Task DeleteByIdAsync(string id)
+        public async Task DeleteAsync(string id)
         {
             _logger.LogInformation($"Attempt to delete entity {nameof(T)} with id = {id}");
 
-            _dbContext.Set<T>().Remove(await GetByIdAsync(id));
+            _dbContext.Set<T>().Remove(await GetAsync(id));
 
             await _dbContext.SaveChangesAsync();
 
             _logger.LogInformation($"Sucessfully deleted entity {nameof(T)} with id = {id}");
+        }
+
+        public async Task DeleteAsync(Expression<Func<T, bool>> predicate)
+        {
+            _logger.LogInformation($"Attempt to delete entities {nameof(T)} with Expression {predicate.ToString()}");
+
+            _dbContext.Set<T>().RemoveRange(await GetAsync(predicate));
+
+            await _dbContext.SaveChangesAsync();
+
+            _logger.LogInformation($"Sucessfully deleted entities {nameof(T)} with Expression {predicate.ToString()}");
         }
 
         public async Task<bool> IsEntityExists(string id)
@@ -82,12 +95,28 @@ namespace Chat.Database.Repositories
             return await _dbContext.Set<T>().AnyAsync(q => q.Id == id);
         }
 
+        public async Task<bool> IsEntitiesExists(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbContext.Set<T>().AnyAsync(predicate);
+        }
+
         private async Task ThrowIfNotFound(string id)
         {
             if (await IsEntityExists(id) == false)
             {
                 _logger.LogWarning($"Entity with Id {id} is not found in the database");
+
                 throw new EntityNotFoundException(id);
+            }
+        }
+
+        private async Task ThrowIfNotFound(Expression<Func<T, bool>> predicate)
+        {
+            if (await IsEntitiesExists(predicate) == false)
+            {
+                _logger.LogWarning($"Entities by predicate {predicate.ToString()} is not found in the database");
+
+                throw new EntityNotFoundException(predicate);
             }
         }
     }
