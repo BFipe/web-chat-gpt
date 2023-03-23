@@ -1,4 +1,5 @@
 ﻿using Chat.Database.Extentions;
+using Chat.GPT.Extentions;
 using Chat.Redis.Extentions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,6 +17,8 @@ namespace Chat.Business.Extentions
             services.AddDatabaseLayerExtentions();
 
             services.AddRedisLayerExtentions();
+
+            services.AddGPTLayerExtentions();
 
             return services;
         }
