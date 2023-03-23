@@ -2,6 +2,7 @@
 using Chat.Database.Repositories;
 using Chat.Entities.DatabaseEntities.GPTUser;
 using Chat.Entities.GPTEntities.APIKey;
+using Chat.Entities.GPTEntities.Chat;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,8 @@ namespace Chat.Database.Extentions
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IGPTBaseRepository<APIKey>, GPTBaseRepository<APIKey>>();
+            services.AddScoped<IGPTBaseRepository<ChatHistory>, GPTBaseRepository<ChatHistory>>();
+            services.AddScoped<IGPTBaseRepository<GPTUser>, GPTBaseRepository<GPTUser>>();
 
             return services;
         }

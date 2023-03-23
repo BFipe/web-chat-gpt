@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Chat.Business\Chat.Business.csproj" />
     <ProjectReference Include="..\Chat.Exceptions\Chat.Exceptions.csproj" />
   </ItemGroup>
