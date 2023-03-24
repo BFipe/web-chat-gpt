@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Chat.Exceptions\Chat.Exceptions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Account\" />
-  </ItemGroup>
-
 </Project>
