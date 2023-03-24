@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Chat.Business.Services
 {
-    internal class GPTService
+    public class GPTService
     {
+
     }
 }

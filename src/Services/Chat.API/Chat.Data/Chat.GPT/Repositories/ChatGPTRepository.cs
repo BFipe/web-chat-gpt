@@ -1,5 +1,6 @@
 ﻿using Chat.Entities.GPTEntities.Chat;
 using Chat.Exceptions.ChatGPTExceptions;
+using Chat.GPT.Interfaces;
 using OpenAI.GPT3;
 using OpenAI.GPT3.Managers;
 using OpenAI.GPT3.ObjectModels;

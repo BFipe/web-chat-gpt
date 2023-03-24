@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chat.Business.Services
 {
-    internal class AccountService
+    public class AccountService
     {
     }
 }

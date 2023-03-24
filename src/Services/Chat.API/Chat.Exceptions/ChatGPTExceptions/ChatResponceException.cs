@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Chat.Exceptions.ChatGPTExceptions
 {
-    internal class ChatResponceException
+    public class ChatResponceException : Exception
     {
+        public ChatResponceException(string errorCode, string errorMessage) : base($"{errorCode} : {errorMessage}") { }
     }
 }
