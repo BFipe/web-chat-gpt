@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chat.Business.Models.AccountModels
 {
-    internal class RegisterDto
+    public class RegisterDto : LoginDto
     {
     }
 }

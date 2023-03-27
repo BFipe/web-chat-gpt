@@ -15,13 +15,13 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Hotel listing Api",
+        Title = "GPTChat service",
         Version = "v1",
     });
 
     options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
     {
-        Description = "Inser your token with the word [Bearer] like this: \"Bearer your0unique0token032h3t4g87...\" ",
+        Description = "Inser your token like this: \"Bearer your0unique0token032h3t4g87...\" ",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,

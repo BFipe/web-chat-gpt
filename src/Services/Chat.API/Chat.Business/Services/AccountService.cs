@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Chat.Business.Interfaces;
 using Chat.Business.Models.AccountModels;
 using Chat.Entities.DatabaseEntities.GPTUser;
 using Microsoft.AspNetCore.Identity;
@@ -21,16 +22,16 @@ namespace Chat.Business.Services
         private readonly IMapper _mapper;
         private readonly UserManager<GPTUser> _userManager;
         private readonly ILogger<AccountService> _logger;
+
         private GPTUser _user;
 
         private const string _loginProvider = "Chat.API";
         private const string _refreshToken = "RefreshToken";
-        public AccountService(IMapper mapper, UserManager<GPTUser> userManager, ILogger<AccountService> logger, GPTUser user)
+        public AccountService(IMapper mapper, UserManager<GPTUser> userManager, ILogger<AccountService> logger)
         {
             _mapper = mapper;
             _userManager = userManager;
             _logger = logger;
-            _user = user;
         }
 
         public async Task<IEnumerable<IdentityError>> Register(RegisterDto registerUserDto)
