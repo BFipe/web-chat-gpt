@@ -12,7 +12,7 @@ namespace Chat.Entities.GPTEntities.Chat
     {
         public void Configure(EntityTypeBuilder<ChatHistory> builder)
         {
-            builder.HasKey(q => q.GPTUserId);
+            builder.HasKey(q => q.Id);
 
             //Removing this because all chatting history will be stored in RedisDB
             builder.Ignore(q => q.ChattingHistory);

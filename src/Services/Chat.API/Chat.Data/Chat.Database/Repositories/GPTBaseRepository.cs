@@ -23,6 +23,13 @@ namespace Chat.Database.Repositories
             _logger = logger;
         }
 
+        public async Task<IEnumerable<T>> GetAsync()
+        {
+            _logger.LogInformation($"Returned all avaliable {nameof(T)} entities");
+
+            return await _dbContext.Set<T>().ToListAsync();
+        }
+
         public async Task<T> GetAsync(string id)
         {
             await ThrowIfNotFound(id);
@@ -32,7 +39,7 @@ namespace Chat.Database.Repositories
             return await _dbContext.Set<T>().FirstAsync(q => q.Id == id);
         }
 
-        public async Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
             await ThrowIfNotFound(predicate);
 
