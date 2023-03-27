@@ -1,4 +1,6 @@
-﻿using Chat.Database.Extentions;
+﻿using Chat.Business.Interfaces;
+using Chat.Business.Services;
+using Chat.Database.Extentions;
 using Chat.GPT.Extentions;
 using Chat.Redis.Extentions;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +21,10 @@ namespace Chat.Business.Extentions
             services.AddRedisLayerExtentions();
 
             services.AddGPTLayerExtentions();
+
+            services.AddAutoMapper(typeof(MapperConfigurations));
+
+            services.AddScoped<IAccountService, AccountService>();
 
             return services;
         }

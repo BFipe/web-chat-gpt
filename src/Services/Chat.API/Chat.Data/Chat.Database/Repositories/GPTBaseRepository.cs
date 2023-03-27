@@ -117,7 +117,6 @@ namespace Chat.Database.Repositories
                 throw new EntityNotFoundException(id);
             }
         }
-
         private async Task ThrowIfNotFound(Expression<Func<T, bool>> predicate)
         {
             if (await IsEntitiesExists(predicate) == false)
