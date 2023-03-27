@@ -161,7 +161,7 @@ namespace Chat.Business.Services
 
         private async Task<string> GenerateToken()
         {
-            var sequrityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretKey"));
+            var sequrityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("60588d7f-ad08-4c7a-a48f-63ae64629798"));
 
             var credentials = new SigningCredentials(sequrityKey, SecurityAlgorithms.HmacSha256);
 
