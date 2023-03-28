@@ -6,13 +6,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Chat.API/Chat.API.csproj", "Chat.API/"]
-COPY ["Chat.Business/Chat.Business.csproj", "Chat.Business/"]
-COPY ["Chat.Data/Chat.Data.csproj", "Chat.Data/"]
-COPY ["Chat.Entities/Chat.Entities.csproj", "Chat.Entities/"]
-RUN dotnet restore "Chat.API/Chat.API.csproj"
+COPY ["src/Services/Chat.API/Chat.API/Chat.API.csproj", "src/Services/Chat.API/Chat.API/"]
+COPY ["src/Services/Chat.API/Chat.Business/Chat.Business.csproj", "src/Services/Chat.API/Chat.Business/"]
+COPY ["src/Services/Chat.API/Chat.Data/Chat.Database/Chat.Database.csproj", "src/Services/Chat.API/Chat.Data/Chat.Database/"]
+COPY ["src/Services/Chat.API/Chat.Entities/Chat.Entities.csproj", "src/Services/Chat.API/Chat.Entities/"]
+COPY ["src/Services/Chat.API/Chat.Exceptions/Chat.Exceptions.csproj", "src/Services/Chat.API/Chat.Exceptions/"]
+COPY ["src/Services/Chat.API/Chat.Data/Chat.GPT/Chat.GPT.csproj", "src/Services/Chat.API/Chat.Data/Chat.GPT/"]
+COPY ["src/Services/Chat.API/Chat.Data/Chat.Redis/Chat.Redis.csproj", "src/Services/Chat.API/Chat.Data/Chat.Redis/"]
+RUN dotnet restore "src/Services/Chat.API/Chat.API/Chat.API.csproj"
 COPY . .
-WORKDIR "/src/Chat.API"
+WORKDIR "/src/src/Services/Chat.API/Chat.API"
 RUN dotnet build "Chat.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

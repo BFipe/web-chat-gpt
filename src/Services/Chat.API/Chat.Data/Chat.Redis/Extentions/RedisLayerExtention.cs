@@ -15,8 +15,8 @@ namespace Chat.Redis.Extentions
         {
             services.AddStackExchangeRedisCache(q =>
             {
-                q.Configuration = "redis://:bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81@localhost:6379";
-                //q.Configuration = Environment.GetEnvironmentVariable("RedisDatabaseConnection");
+                //q.Configuration = "redis://:bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81@localhost:6379";
+                q.Configuration = Environment.GetEnvironmentVariable("RedisDatabaseConnection");
             });
 
             services.AddScoped<IRedisDatabaseRepository, RedisDatabaseRepository>();

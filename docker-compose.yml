@@ -1,12 +1,13 @@
 version: '3.4'
 
 services:
-  #chat.api:
-  #  image: ${DOCKER_REGISTRY-}chatapi
-  #  build:
-  #    context: .
-  #    dockerfile: src/Services/Chat.API/Chat.API/Dockerfile
       
+  chat.api:
+    image: ${DOCKER_REGISTRY-}chatapi
+    build:
+      context: .
+      dockerfile: src/Services/Chat.API/Chat.API/Dockerfile
+
   redisDb:
     image: redis:alpine
     
@@ -15,3 +16,4 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+

@@ -124,9 +124,20 @@ namespace Chat.Business.Services
                     return null;
                 }
 
-                var tokenContent = jwtSequrityTokenHandler.ReadJwtToken(request.Token);
+                JwtSecurityToken jwtSecurityToken = new JwtSecurityToken();
 
-                var username = tokenContent.Claims.ToList().FirstOrDefault(q => q.Type == JwtRegisteredClaimNames.Sub)?.Value;
+                try
+                {
+                    var tokenContent = jwtSequrityTokenHandler.ReadJwtToken(request.Token);
+                    jwtSecurityToken = tokenContent;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"Invalid token provided while trying to refresh it for user {request.UserEmail}");
+                    return null;
+                }
+
+                var username = jwtSecurityToken.Claims.ToList().FirstOrDefault(q => q.Type == JwtRegisteredClaimNames.Sub)?.Value;
                 _user = await _userManager.FindByNameAsync(username);
                 if (_user is null || _user.Email != request.UserEmail)
                 {
@@ -161,7 +172,7 @@ namespace Chat.Business.Services
 
         private async Task<string> GenerateToken()
         {
-            var sequrityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("60588d7f-ad08-4c7a-a48f-63ae64629798"));
+            var sequrityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWTSecretKey")));
 
             var credentials = new SigningCredentials(sequrityKey, SecurityAlgorithms.HmacSha256);
 
@@ -181,10 +192,10 @@ namespace Chat.Business.Services
             .Union(userClaims).Union(roleClaims);
 
             var token = new JwtSecurityToken(
-                issuer: "MyIssuer",
-                audience: "MyAudience",
+                issuer: Environment.GetEnvironmentVariable("JWTIssuer"),
+                audience: Environment.GetEnvironmentVariable("JWTAudience"),
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(int.Parse("10")),
+                expires: DateTime.Now.AddMinutes(int.Parse(Environment.GetEnvironmentVariable("JWTDuration"))),
                 signingCredentials: credentials
                 );
 
