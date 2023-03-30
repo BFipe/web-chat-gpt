@@ -100,4 +100,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+//Migrate database
+await BusinessLayerStartupFunctions.MigrateDatabase(app.Services);
+
 app.Run();

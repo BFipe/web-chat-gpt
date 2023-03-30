@@ -14,6 +14,9 @@ services:
     ports:
       - 5000:80
     restart: always
+    depends_on:
+      - redisDb
+      - postgreDb
 
   redisDb:
     environment:
@@ -26,6 +29,7 @@ services:
     environment:
       POSTGRES_PASSWORD: bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81
       POSTGRES_USER: ilya.maximov11@gmail.com
+      POSTGRES_DB: GPTChat
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
