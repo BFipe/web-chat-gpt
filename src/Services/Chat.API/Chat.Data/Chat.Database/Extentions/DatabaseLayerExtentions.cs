@@ -35,7 +35,7 @@ namespace Chat.Database.Extentions
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             })
                 .AddRoles<IdentityRole>()
-                .AddTokenProvider<DataProtectorTokenProvider<GPTUser>>("Chat.API")
+                .AddTokenProvider<DataProtectorTokenProvider<GPTUser>>(Environment.GetEnvironmentVariable("JWTLoginProvider"))
                 .AddEntityFrameworkStores<ChatDbContext>()
                 .AddDefaultTokenProviders();
 
