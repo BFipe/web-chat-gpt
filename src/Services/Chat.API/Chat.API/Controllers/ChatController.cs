@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Chat.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,18 @@ namespace Chat.API.Controllers
     [Authorize]
     public class ChatController : ControllerBase
     {
+        private readonly IChattingService _chattingService;
+
+        public ChatController(IChattingService chattingService)
+        {
+            _chattingService = chattingService ?? throw new ArgumentNullException(nameof(chattingService));
+        }
+
         [HttpGet]
         [Route("GetAllChats")]
         public async Task<IActionResult> GetAllUserChats()
         {
-            //This method returns all logged-in user chats
+            await _chattingService.Test();
             return Ok();
         }
 

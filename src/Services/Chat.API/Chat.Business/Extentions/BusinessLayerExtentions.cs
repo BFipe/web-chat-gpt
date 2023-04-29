@@ -26,6 +26,8 @@ namespace Chat.Business.Extentions
 
             services.AddScoped<IAccountService, AccountService>();
 
+            services.AddScoped<IChattingService, ChattingService>();
+
             return services;
         }
     }
