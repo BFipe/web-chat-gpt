@@ -9,8 +9,10 @@ services:
       RedisDatabaseConnection : redis://:bb5fc9f6-bd13-4dfb-859e-a8cfe65d3c81@redisDb:6379
       JWTSecretKey : 4fef10f1-788b-4bcd-a5e4-79fad1a142a1
       JWTIssuer : Chat.API
-      JWTAudience : Chat.APIClient
+      JWTAudience : Chat.API
       JWTDuration : 10
+      JWTLoginProvider: Chat.APIProvider
+      JWTRefreshToken: RefreshToken
     ports:
       - 5000:80
     restart: always

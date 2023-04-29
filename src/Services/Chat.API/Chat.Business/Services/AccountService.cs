@@ -25,13 +25,17 @@ namespace Chat.Business.Services
 
         private GPTUser _user;
 
-        private const string _loginProvider = "Chat.API";
-        private const string _refreshToken = "RefreshToken";
+        private readonly string _loginProvider;
+        private readonly string _refreshToken;
         public AccountService(IMapper mapper, UserManager<GPTUser> userManager, ILogger<AccountService> logger)
         {
             _mapper = mapper;
             _userManager = userManager;
             _logger = logger;
+
+            _loginProvider = Environment.GetEnvironmentVariable("JWTLoginProvider");
+            _refreshToken = Environment.GetEnvironmentVariable("JWTRefreshToken");
+
         }
 
         public async Task<IEnumerable<IdentityError>> Register(RegisterDto registerUserDto)
