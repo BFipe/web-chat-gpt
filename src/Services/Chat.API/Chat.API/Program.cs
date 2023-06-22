@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddLogging();
 //Implementing Auth to swagger
 builder.Services.AddSwaggerGen(options =>
 {
